@@ -4,6 +4,54 @@ import { PageView } from '../App';
 import { motion } from 'motion/react';
 import rEventsLogo from '../assets/rEventsLogo.png';
 import rEventsLogoWhite from '../assets/rEventsLogoWhite.png';
+import sebastian2 from '../assets/sebastianPics/sebastian2.jpeg';
+import sebastian6 from '../assets/sebastianPics/sebastian6.jpeg';
+import sebastian8 from '../assets/sebastianPics/sebastian8.jpeg';
+import sebastian9 from '../assets/sebastianPics/sebastian09.jpeg';
+import sebastian10 from '../assets/sebastianPics/sebastian10.jpeg';
+
+const SAME_EVENT_SUFFIXES = ['/05.jpeg', '/06.jpeg', '/07.jpeg'];
+const SEBASTIAN_GALLERY = [
+  { src: sebastian2, alt: 'Ricky Sebastian' },
+  { src: sebastian6, alt: 'Ricky Sebastian' },
+  { src: sebastian8, alt: 'Ricky Sebastian' },
+  { src: sebastian9, alt: 'Ricky Sebastian' },
+  { src: sebastian10, alt: 'Ricky Sebastian' },
+];
+
+function buildGalleryOrder(): { src: string; alt: string; key: string }[] {
+  const glob = import.meta.glob<{ default: string }>('../assets/weddings/*.{jpeg,jpg}', { eager: true });
+  const entries = Object.entries(glob)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([path, m]) => ({ path, src: m.default }));
+  const sameEvent = entries.filter(({ path }) => SAME_EVENT_SUFFIXES.some((s) => path.endsWith(s)));
+  const other = entries.filter(({ path }) => !SAME_EVENT_SUFFIXES.some((s) => path.endsWith(s)));
+  const spreadIndices = [0, 4, 8];
+  const result: { src: string; alt: string; key: string }[] = [];
+  let otherIdx = 0;
+  let sameIdx = 0;
+  for (let i = 0; i < entries.length; i++) {
+    if (spreadIndices.includes(i) && sameIdx < sameEvent.length) {
+      result.push({ src: sameEvent[sameIdx].src, alt: `Event moment`, key: sameEvent[sameIdx].path });
+      sameIdx++;
+    } else if (otherIdx < other.length) {
+      result.push({ src: other[otherIdx].src, alt: `Event moment`, key: other[otherIdx].path });
+      otherIdx++;
+    }
+  }
+  sameEvent.forEach((e) => {
+    if (!result.some((r) => r.key === e.path)) result.push({ src: e.src, alt: 'Event moment', key: e.path });
+  });
+  // Intersperse Sebastian pics (first one near top, then spread through), not all at the end
+  const step = Math.max(1, Math.floor(result.length / (SEBASTIAN_GALLERY.length + 1)));
+  SEBASTIAN_GALLERY.forEach((g, i) => {
+    const insertAt = Math.min(i * step + 2, result.length);
+    result.splice(insertAt, 0, { ...g, key: `sebastian-${i}` });
+  });
+  return result;
+}
+
+const GALLERY_IMAGES = buildGalleryOrder();
 
 interface REventsPageProps {
   navigateTo: (view: PageView) => void;
@@ -110,25 +158,32 @@ const REventsPage: React.FC<REventsPageProps> = ({ navigateTo }) => {
           </div>
         </div>
 
-        {/* Cinematic Gallery Section - all images from assets/weddings */}
+        {/* Cinematic Gallery Section — weddings + Sebastian pics; 05/06/07 spread so not same row */}
         <div className="mb-20 sm:mb-32">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif mb-10 sm:mb-16 text-slate-900 dark:text-white italic text-center px-2">Moments Captured</h2>
           <div className="columns-1 md:columns-2 lg:columns-3 gap-4 sm:gap-8 space-y-4 sm:space-y-8">
-            {(Object.entries(import.meta.glob<{ default: string }>('../assets/weddings/*.{jpeg,jpg}', { eager: true }))
-              .sort(([a], [b]) => a.localeCompare(b))
-              .map(([path, m], i) => (
-              <div key={path} className="relative group overflow-hidden rounded-[2.5rem] break-inside-avoid shadow-sm hover:shadow-2xl transition-all duration-700">
-                <img src={(m as { default: string }).default} alt={`Wedding moment ${i + 1}`} className="w-full group-hover:scale-105 transition-all duration-1000" />
+            {GALLERY_IMAGES.map((item, i) => (
+              <div key={item.key} className="relative group overflow-hidden rounded-[2.5rem] break-inside-avoid shadow-sm hover:shadow-2xl transition-all duration-700">
+                <img src={item.src} alt={item.alt} className="w-full group-hover:scale-105 transition-all duration-1000 object-cover" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                   <span className="text-white text-[10px] uppercase tracking-widest font-bold border border-white/40 px-6 py-3 rounded-full backdrop-blur-md">View Experience</span>
+                  <span className="text-white text-[10px] uppercase tracking-widest font-bold border border-white/40 px-6 py-3 rounded-full backdrop-blur-md">View Experience</span>
                 </div>
               </div>
-            )))}
+            ))}
           </div>
         </div>
 
-        {/* CTA Banner */}
+        {/* CTA Banner — with R Events logos left & right */}
         <div className="bg-slate-900 dark:bg-white p-8 sm:p-12 md:p-24 rounded-3xl sm:rounded-[4rem] text-center shadow-2xl overflow-hidden relative">
+          {/* Left logo — light mode: white logo on dark CTA; dark mode: black logo on white CTA */}
+          <div className="absolute left-4 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 z-10 hidden sm:block">
+            <img src={rEventsLogoWhite} alt="" className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain opacity-25 dark:hidden" aria-hidden />
+            <img src={rEventsLogo} alt="" className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain opacity-20 hidden dark:block" aria-hidden />
+          </div>
+          <div className="absolute right-4 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 z-10 hidden sm:block">
+            <img src={rEventsLogoWhite} alt="" className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain opacity-25 dark:hidden" aria-hidden />
+            <img src={rEventsLogo} alt="" className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain opacity-20 hidden dark:block" aria-hidden />
+          </div>
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white dark:text-black mb-8 sm:mb-10 leading-tight px-1">Ready to plan your <br /> next event?</h2>
             <button 
