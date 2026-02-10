@@ -61,20 +61,9 @@ export const PROCESS: ProcessStep[] = [
   { id: 6, title: 'Legacy of Reliability', description: 'A seamless closure that leaves a lasting, measurable impact.' }
 ];
 
-export const CLIENT_LOGOS = [
-  { name: 'Mindspace', domain: 'mindspacereit.com' },
-  { name: 'Aditya Birla', domain: 'adityabirla.com' },
-  { name: 'Hindalco', domain: 'hindalco.com' },
-  { name: 'Emeritus', domain: 'emeritus.org' },
-  { name: 'Tata Group', domain: 'tata.com' },
-  { name: 'HDFC Bank', domain: 'hdfcbank.com' },
-  { name: 'Reliance', domain: 'ril.com' },
-  { name: 'Standard Chartered', domain: 'sc.com' },
-  { name: 'Godrej', domain: 'godrej.com' },
-  { name: 'Infosys', domain: 'infosys.com' },
-  { name: 'Marriott', domain: 'marriott.com' },
-  { name: 'Aditya Birla Capital', domain: 'adityabirlacapital.com' }
-];
+const LOGO_FILES = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png'];
+
+export const CLIENT_LOGOS = LOGO_FILES.map((file, i) => ({ name: `Partner ${i + 1}`, file }));
 
 export const CLIENTS = CLIENT_LOGOS.map(c => c.name);
 

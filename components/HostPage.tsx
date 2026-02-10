@@ -18,6 +18,7 @@ interface HostPageProps {
 }
 
 import FAQ from './FAQ';
+import Clients from './Clients';
 
 const IconWrapper = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
   <span className={`flex-shrink-0 w-10 h-10 rounded-xl bg-slate-200/80 dark:bg-slate-700/50 flex items-center justify-center text-slate-700 dark:text-slate-300 ${className}`}>{children}</span>
@@ -175,6 +176,8 @@ const HostPage: React.FC<HostPageProps> = ({ navigateTo }) => {
               </motion.div>
            </div>
         </motion.div>
+
+        <Clients />
 
         {/* Global Stats Bar */}
         <motion.div

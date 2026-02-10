@@ -3,6 +3,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { CLIENT_LOGOS } from '../constants';
 import { cn } from '../lib/utils';
 
+const logoUrls = CLIENT_LOGOS.map(
+  (c) => new URL(`../assets/logos/${c.file}`, import.meta.url).href
+);
+
 const Clients: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLUListElement>(null);
@@ -69,26 +73,12 @@ const Clients: React.FC = () => {
               key={`${client.name}-${idx}`}
               className="group relative flex items-center justify-center transition-all duration-500 h-12 md:h-16"
             >
-              {/* Subtle backglow for the logo on hover */}
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/0 via-rose-500/0 to-amber-500/0 group-hover:from-blue-500/5 group-hover:via-rose-500/5 group-hover:to-amber-500/5 blur-xl transition-all duration-700 rounded-full scale-150" />
-              
-              {/* Actual Logo Image - Using low grayscale so some color peeks through, then popping on hover */}
               <img 
-                src={`https://logo.clearbit.com/${client.domain}?size=200`} 
+                src={logoUrls[idx]} 
                 alt={`${client.name} Logo`}
                 className="h-full w-auto object-contain grayscale-[0.4] opacity-60 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 dark:brightness-125 dark:group-hover:brightness-100 relative z-10"
                 loading="lazy"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    const fallback = document.createElement('span');
-                    fallback.className = "text-sm md:text-base font-serif tracking-[0.2em] uppercase opacity-40 group-hover:opacity-100 group-hover:text-blue-500 transition-all whitespace-nowrap";
-                    fallback.innerText = client.name;
-                    parent.appendChild(fallback);
-                  }
-                }}
               />
             </li>
           ))}
