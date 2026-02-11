@@ -3,18 +3,29 @@ import { PageView } from '../App';
 
 const GRID_IMAGE_COUNT = 8;
 
+// Curated order: 01–04, one from same-event (05), then other events (wed1, wed2, wed03) so 5,6,7 aren’t all same event
+const MOMENTS_ORDER = ['01.jpeg', '02.jpeg', '03.jpeg', '04.jpeg', '05.jpeg', 'wed1.jpeg', 'df.jpeg', 'WhatsApp Image 2026-02-07 at 20.25.08.jpeg'];
+
 interface EventsGridPreviewProps {
   navigateTo: (view: PageView) => void;
 }
 
 const EventsGridPreview: React.FC<EventsGridPreviewProps> = ({ navigateTo }) => {
   const glob = import.meta.glob<{ default: string }>('../assets/weddings/*.{jpeg,jpg}', { eager: true });
-  const entries = Object.entries(glob)
+  const byBasename = Object.fromEntries(
+    Object.entries(glob).map(([path, m]) => {
+      const name = path.split('/').pop() ?? path;
+      return [name, m.default];
+    })
+  );
+  const images = MOMENTS_ORDER.map((name) => byBasename[name]).filter(Boolean);
+  const fallback = Object.entries(glob)
     .sort(([a], [b]) => a.localeCompare(b))
-    .slice(0, GRID_IMAGE_COUNT);
-  const images = entries.map(([, m]) => m.default);
+    .slice(0, GRID_IMAGE_COUNT)
+    .map(([, m]) => m.default);
+  const finalImages = images.length >= GRID_IMAGE_COUNT ? images : fallback;
 
-  if (images.length === 0) return null;
+  if (finalImages.length === 0) return null;
 
   return (
     <section className="py-16 sm:py-24 md:py-32 bg-slate-50 dark:bg-[#0E0E11] transition-colors duration-500">
@@ -29,7 +40,7 @@ const EventsGridPreview: React.FC<EventsGridPreviewProps> = ({ navigateTo }) => 
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-          {images.map((src, i) => (
+          {finalImages.map((src, i) => (
             <div
               key={i}
               className="relative aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl bg-slate-200 dark:bg-slate-800 group"

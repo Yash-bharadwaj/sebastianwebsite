@@ -9,12 +9,13 @@ import sebastian6 from '../assets/sebastianPics/sebastian6.jpeg';
 import sebastian8 from '../assets/sebastianPics/sebastian8.jpeg';
 import sebastian9 from '../assets/sebastianPics/sebastian09.jpeg';
 import sebastian10 from '../assets/sebastianPics/sebastian10.jpeg';
+import wed03 from '../assets/weddings/wed03.jpeg';
 
 const SAME_EVENT_SUFFIXES = ['/05.jpeg', '/06.jpeg', '/07.jpeg'];
 const SEBASTIAN_GALLERY = [
   { src: sebastian2, alt: 'Ricky Sebastian' },
   { src: sebastian6, alt: 'Ricky Sebastian' },
-  { src: sebastian8, alt: 'Ricky Sebastian' },
+  { src: wed03, alt: 'Ricky Sebastian' },
   { src: sebastian9, alt: 'Ricky Sebastian' },
   { src: sebastian10, alt: 'Ricky Sebastian' },
 ];
@@ -32,15 +33,22 @@ function buildGalleryOrder(): { src: string; alt: string; key: string }[] {
   let sameIdx = 0;
   for (let i = 0; i < entries.length; i++) {
     if (spreadIndices.includes(i) && sameIdx < sameEvent.length) {
-      result.push({ src: sameEvent[sameIdx].src, alt: `Event moment`, key: sameEvent[sameIdx].path });
+      const e = sameEvent[sameIdx];
+      const src = e.path.endsWith('wed03.jpeg') ? sebastian8 : e.src;
+      result.push({ src, alt: `Event moment`, key: e.path });
       sameIdx++;
     } else if (otherIdx < other.length) {
-      result.push({ src: other[otherIdx].src, alt: `Event moment`, key: other[otherIdx].path });
+      const e = other[otherIdx];
+      const src = e.path.endsWith('wed03.jpeg') ? sebastian8 : e.src;
+      result.push({ src, alt: `Event moment`, key: e.path });
       otherIdx++;
     }
   }
   sameEvent.forEach((e) => {
-    if (!result.some((r) => r.key === e.path)) result.push({ src: e.src, alt: 'Event moment', key: e.path });
+    if (!result.some((r) => r.key === e.path)) {
+      const src = e.path.endsWith('wed03.jpeg') ? sebastian8 : e.src;
+      result.push({ src, alt: 'Event moment', key: e.path });
+    }
   });
   // Intersperse Sebastian pics (first one near top, then spread through), not all at the end
   const step = Math.max(1, Math.floor(result.length / (SEBASTIAN_GALLERY.length + 1)));
