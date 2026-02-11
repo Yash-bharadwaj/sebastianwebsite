@@ -6,7 +6,6 @@ import { Carousel, Card } from "./ui/apple-cards-carousel";
 
 const video1 = new URL("../assets/videos/WhatsApp Video 2026-02-03 at 18.20.50.mp4", import.meta.url).href;
 const video2 = new URL("../assets/videos/WhatsApp Video 2026-02-03 at 18.21.31.mp4", import.meta.url).href;
-const video3 = new URL("../assets/videos/WhatsApp Video 2026-02-03 at 18.22.59.mp4", import.meta.url).href;
 const video4 = new URL("../assets/videos/winner.mp4", import.meta.url).href;
 const video5 = new URL("../assets/videos/03.mp4", import.meta.url).href;
 const video6 = new URL("../assets/videos/WhatsApp Video 2026-02-08 at 11.38.40.mp4", import.meta.url).href;
@@ -69,13 +68,6 @@ const data = [
     src: "https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=2070&auto=format&fit=crop",
     videoSrc: video2,
     content: <DummyContent text="From corporate galas to celebrations — every moment anchored with clarity and presence." />,
-  },
-  {
-    category: "Moments",
-    title: "Stories from the stage.",
-    src: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop",
-    videoSrc: video3,
-    content: <DummyContent text="Destination weddings, international forums, and high-energy events — all delivered with the same care." />,
   },
   {
     category: "Moments",
