@@ -7,7 +7,7 @@ import { Carousel, Card } from "./ui/apple-cards-carousel";
 const video1 = new URL("../assets/videos/WhatsApp Video 2026-02-03 at 18.20.50.mp4", import.meta.url).href;
 const video2 = new URL("../assets/videos/WhatsApp Video 2026-02-03 at 18.21.31.mp4", import.meta.url).href;
 const video3 = new URL("../assets/videos/WhatsApp Video 2026-02-03 at 18.22.59.mp4", import.meta.url).href;
-const video4 = new URL("../assets/videos/02.mp4", import.meta.url).href;
+const video4 = new URL("../assets/videos/winner.mp4", import.meta.url).href;
 const video5 = new URL("../assets/videos/03.mp4", import.meta.url).href;
 const video6 = new URL("../assets/videos/WhatsApp Video 2026-02-08 at 11.38.40.mp4", import.meta.url).href;
 

@@ -93,10 +93,10 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     >
       <div className="relative w-full">
         <div
-          className="flex w-full overflow-x-auto overflow-y-hidden overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20 touch-pan-x"
+          className="flex w-full overflow-x-auto overflow-y-hidden overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
           ref={carouselRef}
           onScroll={checkScrollability}
-          style={{ WebkitOverflowScrolling: "touch" }}
+          style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-x pan-y" }}
         >
           <div
             className={cn(
