@@ -102,8 +102,13 @@ const ContactPage: React.FC = () => {
               <p className="text-xl font-serif italic text-slate-900 dark:text-white mb-2">
                 <a href="mailto:ricky.sebastian1983@gmail.com" className="hover:underline">ricky.sebastian1983@gmail.com</a>
               </p>
+              <p className="text-xl font-serif italic text-slate-900 dark:text-white mb-2 mt-4">
+                <a href="mailto:info@r-events.in" className="hover:underline">info@r-events.in</a>
+              </p>
               <p className="text-xl font-serif italic text-slate-900 dark:text-white mt-4 mb-2">WhatsApp or Call</p>
               <a href="https://wa.me/919619204243" target="_blank" rel="noopener noreferrer" className="text-xl font-serif italic text-slate-900 dark:text-white hover:underline block">+91 96192 04243</a>
+              <p className="text-sm uppercase tracking-widest opacity-60 mt-2 mb-1">Alternate</p>
+              <a href="https://wa.me/918291465411" target="_blank" rel="noopener noreferrer" className="text-xl font-serif italic text-slate-900 dark:text-white hover:underline block">+91 82914 65411</a>
             </div>
             
             <div>
