@@ -10,9 +10,11 @@ import sebastian8 from '../assets/sebastianPics/sebastian8.jpeg';
 import sebastian9 from '../assets/sebastianPics/sebastian09.jpeg';
 import sebastian10 from '../assets/sebastianPics/sebastian10.jpeg';
 import wed03 from '../assets/weddings/wed03.jpeg';
+import cleleb from '../assets/cleleb.jpeg';
 
 const SAME_EVENT_SUFFIXES = ['/05.jpeg', '/06.jpeg', '/07.jpeg'];
 const SEBASTIAN_GALLERY = [
+  { src: cleleb, alt: 'Ricky Sebastian' },
   { src: sebastian2, alt: 'Ricky Sebastian' },
   { src: sebastian6, alt: 'Ricky Sebastian' },
   { src: wed03, alt: 'Ricky Sebastian' },

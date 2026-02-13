@@ -12,7 +12,9 @@ const video6 = new URL("../assets/videos/WhatsApp Video 2026-02-08 at 11.38.40.m
 
 export default function AppleCardsCarouselDemo() {
   const cards = data.map((card, index) => (
-    <Card key={card.videoSrc ?? card.src} card={card} index={index} />
+    <React.Fragment key={index}>
+      <Card card={card} index={index} />
+    </React.Fragment>
   ));
 
   return (

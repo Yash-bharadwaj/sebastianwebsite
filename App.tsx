@@ -11,7 +11,6 @@ import InfiniteMovingCardsDemo from './components/infinite-moving-cards-demo';
 import Transition from './components/Transition';
 import AboutREvents from './components/AboutREvents';
 import Services from './components/Services';
-import Process from './components/Process';
 import FAQ from './components/FAQ';
 import Clients from './components/Clients';
 import Footer from './components/Footer';
@@ -65,7 +64,6 @@ function App() {
             <Transition />
             <AboutREvents />
             <Services />
-            <Process />
             <FAQ />
           </>
         );

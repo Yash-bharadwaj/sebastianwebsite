@@ -1,5 +1,5 @@
 
-import { ServiceItem, ProcessStep, Award } from './types';
+import { ServiceItem, Award } from './types';
 
 export const COUNTRIES = [
   { name: 'Kuwait', code: 'kw' },
@@ -16,12 +16,17 @@ export const AWARDS: Award[] = [
   {
     title: 'Best Anchor Award',
     organization: 'WedMeGood',
-    year: '2023'
+    year: '2026'
   },
   {
     title: 'Best Anchor Award',
     organization: 'WedMeGood',
-    year: '2022'
+    year: '2025'
+  },
+  {
+    title: 'Best Anchor Award',
+    organization: 'WedMeGood',
+    year: '2024'
   }
 ];
 
@@ -50,15 +55,6 @@ export const SERVICES: ServiceItem[] = [
     title: 'On-Ground Management & Safety',
     description: 'Rigorous safety planning and operational oversight.'
   }
-];
-
-export const PROCESS: ProcessStep[] = [
-  { id: 1, title: 'Strategic Blueprinting', description: 'Deep diving into organizational culture to define a purposeful event architecture.' },
-  { id: 2, title: 'Experience Engineering', description: 'Designing formats where energy is calculated, not accidental.' },
-  { id: 3, title: 'Infrastructure Control', description: 'Securing premium venues and managing technical complexity with zero margin for error.' },
-  { id: 4, title: 'Orchestrated Logistics', description: 'Coordinating diverse stakeholders with the rhythm of a conductor.' },
-  { id: 5, title: 'Presence in Execution', description: 'Flawless on-ground delivery led by composed authority.' },
-  { id: 6, title: 'Legacy of Reliability', description: 'A seamless closure that leaves a lasting, measurable impact.' }
 ];
 
 const LOGO_FILES = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png'];

@@ -4,12 +4,6 @@ export interface ServiceItem {
   description: string;
 }
 
-export interface ProcessStep {
-  id: number;
-  title: string;
-  description: string;
-}
-
 export interface Award {
   title: string;
   organization: string;

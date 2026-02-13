@@ -27,6 +27,7 @@ export type Card = {
   category: string;
   content: React.ReactNode;
   videoSrc?: string;
+  objectFit?: 'cover' | 'contain';
 };
 
 export const CarouselContext = createContext<{
@@ -280,7 +281,7 @@ export const Card = ({
           <BlurImage
             src={card.src}
             alt={card.title}
-            className="absolute inset-0 z-10 object-cover"
+            className={cn("absolute inset-0 z-10", card.objectFit === 'contain' ? 'object-contain' : 'object-cover')}
           />
         </motion.button>
       )}

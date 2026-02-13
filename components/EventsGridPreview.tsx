@@ -1,5 +1,6 @@
 import React from 'react';
 import { PageView } from '../App';
+import cleleb from '../assets/cleleb.jpeg';
 
 const GRID_IMAGE_COUNT = 8;
 
@@ -21,9 +22,10 @@ const EventsGridPreview: React.FC<EventsGridPreviewProps> = ({ navigateTo }) => 
   const images = MOMENTS_ORDER.map((name) => byBasename[name]).filter(Boolean);
   const fallback = Object.entries(glob)
     .sort(([a], [b]) => a.localeCompare(b))
-    .slice(0, GRID_IMAGE_COUNT)
+    .slice(0, GRID_IMAGE_COUNT - 1)
     .map(([, m]) => m.default);
-  const finalImages = images.length >= GRID_IMAGE_COUNT ? images : fallback;
+  const baseImages = images.length >= GRID_IMAGE_COUNT - 1 ? images.slice(0, GRID_IMAGE_COUNT - 1) : fallback;
+  const finalImages = [cleleb, ...baseImages];
 
   if (finalImages.length === 0) return null;
 
@@ -48,7 +50,7 @@ const EventsGridPreview: React.FC<EventsGridPreviewProps> = ({ navigateTo }) => 
               <img
                 src={src}
                 alt={`Event moment ${i + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${i === 0 ? 'object-contain' : 'object-cover'}`}
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

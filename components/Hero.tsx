@@ -29,16 +29,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ navigateTo }) => {
-  const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const words = ["Gatherings", "Moments", "Connections", "Experiences"];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveWordIndex((prev) => (prev + 1) % words.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -51,32 +42,24 @@ const Hero: React.FC<HeroProps> = ({ navigateTo }) => {
     <section className="relative min-h-screen w-full flex items-center overflow-x-hidden overflow-y-auto lg:overflow-hidden lg:h-screen bg-white dark:bg-[#0E0E11] transition-colors duration-500">
       {/* Cinematic Ambient Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className={`absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-[180px] transition-all duration-1000 opacity-10 dark:opacity-20 
-          ${activeWordIndex === 0 ? 'bg-blue-600' : activeWordIndex === 1 ? 'bg-indigo-600' : activeWordIndex === 2 ? 'bg-slate-500' : 'bg-zinc-600'}`} 
-        />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-[180px] bg-slate-400 dark:bg-slate-600 opacity-10 dark:opacity-20" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center min-h-screen lg:h-full py-16 lg:py-0 gap-8 sm:gap-12 lg:gap-8 pr-14 sm:pr-16 md:pr-12 lg:pr-12">
         {/* Left Side: Content + Mobile carousel — flex column, no static sizes */}
         <div className="w-full lg:w-1/2 pt-20 sm:pt-24 lg:pt-0 text-left flex flex-col flex-1 min-w-0 lg:flex-shrink-0">
-          <div className="overflow-hidden mb-4 sm:mb-6">
-             <span className="text-[9px] sm:text-[10px] md:text-xs tracking-[0.6em] sm:tracking-[0.8em] uppercase opacity-40 block animate-fade-in-down text-slate-900 dark:text-white">
-               <span className="font-extrabold text-slate-900 dark:text-white">Ricky Sebastian</span> 
-               <span className="font-light ml-1 sm:ml-2">& R Events</span>
-             </span>
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-serif leading-[0.95] mb-6 sm:mb-10 text-slate-900 dark:text-white transition-colors duration-500 tracking-tighter">
-            Refined <br />
-            <span className="italic relative inline-block">
-              <span key={activeWordIndex} className="animate-text-slide-up block">
-                {words[activeWordIndex]}
-              </span>
-            </span>
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif leading-[1.1] mb-4 sm:mb-6 text-slate-900 dark:text-white transition-colors duration-500 tracking-tight">
+            Renowned Emcee &amp;<br className="sm:hidden" /> Master of Ceremonies
           </h1>
-          
-          <p className="text-base sm:text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-light leading-relaxed mb-6 sm:mb-10 md:mb-16 max-w-lg transition-colors duration-500 flex-shrink-0">
-            We combine expert emceeing with full event management — so your events run smoothly and leave a lasting impression.
+
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 font-light leading-relaxed mb-4 sm:mb-6 max-w-lg transition-colors duration-500">
+            Award-winning professional emcee and event host from Mumbai with over a decade of experience. Known for charismatic stage presence, sharp wit, and exceptional audience engagement across weddings, corporate events, and luxury celebrations.
+          </p>
+          <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 font-light leading-relaxed mb-2 max-w-lg transition-colors duration-500">
+            Three-year consecutive <strong className="font-semibold text-slate-700 dark:text-slate-300">Best Anchor</strong> by WedMeGood (2024, 2025, 2026) — India&apos;s leading wedding platform.
+          </p>
+          <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 font-light leading-relaxed mb-6 sm:mb-10 md:mb-16 max-w-lg transition-colors duration-500">
+            Hosted internationally in Kuwait, Dubai, Oman, Bahrain, Hong Kong, Phuket, Kenya and more — trusted for professionalism and seamless connection with global audiences.
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4 sm:gap-0 space-y-0 sm:space-x-10 flex-shrink-0">
@@ -194,21 +177,12 @@ const Hero: React.FC<HeroProps> = ({ navigateTo }) => {
           0% { transform: translateY(0); }
           100% { transform: translateY(-50%); }
         }
-        @keyframes text-slide-up {
-          0% { opacity: 0; transform: translateY(40px); }
-          20% { opacity: 1; transform: translateY(0); }
-          80% { opacity: 1; transform: translateY(0); }
-          100% { opacity: 0; transform: translateY(-40px); }
-        }
         @keyframes fade-in-down {
           0% { opacity: 0; transform: translateY(-20px); }
           100% { opacity: 1; transform: translateY(0); }
         }
         .animate-vertical-marquee {
           animation: vertical-marquee 60s linear infinite;
-        }
-        .animate-text-slide-up {
-          animation: text-slide-up 3s ease-in-out infinite;
         }
         .animate-fade-in-down {
           animation: fade-in-down 1.5s ease-out forwards;
