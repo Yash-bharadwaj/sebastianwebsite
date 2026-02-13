@@ -16,17 +16,17 @@ export const AWARDS: Award[] = [
   {
     title: 'Best Anchor Award',
     organization: 'WedMeGood',
-    year: '2026'
-  },
-  {
-    title: 'Best Anchor Award',
-    organization: 'WedMeGood',
     year: '2025'
   },
   {
     title: 'Best Anchor Award',
     organization: 'WedMeGood',
     year: '2024'
+  },
+  {
+    title: 'Best Anchor Award',
+    organization: 'WedMeGood',
+    year: '2023'
   }
 ];
 

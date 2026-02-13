@@ -56,7 +56,7 @@ const Hero: React.FC<HeroProps> = ({ navigateTo }) => {
             Award-winning professional emcee and event host from Mumbai with over a decade of experience. Known for charismatic stage presence, sharp wit, and exceptional audience engagement across weddings, corporate events, and luxury celebrations.
           </p>
           <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 font-light leading-relaxed mb-2 max-w-lg transition-colors duration-500">
-            Three-year consecutive <strong className="font-semibold text-slate-700 dark:text-slate-300">Best Anchor</strong> by WedMeGood (2024, 2025, 2026) — India&apos;s leading wedding platform.
+            Three-year consecutive <strong className="font-semibold text-slate-700 dark:text-slate-300">Best Anchor</strong> by WedMeGood (2023, 2024, 2025) — India&apos;s leading wedding platform.
           </p>
           <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 font-light leading-relaxed mb-6 sm:mb-10 md:mb-16 max-w-lg transition-colors duration-500">
             Hosted internationally in Kuwait, Dubai, Oman, Bahrain, Hong Kong, Phuket, Kenya and more — trusted for professionalism and seamless connection with global audiences.
