@@ -9,8 +9,12 @@ import sebastian5 from '../assets/sebastianPics/sebastian5.jpeg';
 import sebastian6 from '../assets/sebastianPics/sebastian6.jpeg';
 import sebastian7 from '../assets/sebastianPics/sebastian7.jpeg';
 import sebastian8 from '../assets/sebastianPics/sebastian8.jpeg';
+import sebastian11 from '../assets/sebastianPics/sebastian11.jpeg';
+import sebastian12 from '../assets/sebastianPics/sebastian12.jpeg';
+import sebastian13 from '../assets/sebastianPics/sebastian13.jpeg';
 
 const HERO_PHOTOS = [
+  sebastian11, sebastian12, sebastian13,
   sebastian1, sebastian3, sebastian4,
   sebastian5, sebastian6, sebastian7, sebastian8,
 ];
